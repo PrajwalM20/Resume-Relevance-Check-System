@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+resume_scores.db
+venv/
+submissions.db
