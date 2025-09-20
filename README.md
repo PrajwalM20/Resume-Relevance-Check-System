@@ -1,62 +1,37 @@
-# Automated Resume Relevance Check System (v5)
+# Automated Resume Relevance Check System 📄 
 
-## 📝 Problem Statement
+## Problem Statement
+At many companies and educational institutions, resume evaluation is manual, time-consuming, and inconsistent. Recruiters often receive hundreds or thousands of applications per job description (JD), making it challenging to quickly shortlist the most relevant candidates.  
 
-At Innomatics Research Labs, resume evaluation is currently **manual, inconsistent, and time-consuming**. Placement teams across multiple locations receive dozens of job requirements weekly, each attracting thousands of applications.  
-
-**Challenges:**
-
-- Manual shortlisting causes delays.  
-- Evaluation is inconsistent across reviewers.  
-- High workload reduces time for interview preparation and student guidance.  
-
-**Objective:** Build an **AI-powered automated system** that:  
-
-- Evaluates resumes against job descriptions.  
-- Generates a **Relevance Score (0–100)** for each resume.  
-- Highlights missing skills or projects.  
-- Provides a **High/Medium/Low suitability verdict**.  
-- Gives **personalized improvement feedback** to students.  
-- Stores evaluations in a **dashboard/database** for easy access.
+This project automates **resume relevance checking** by comparing resumes against job descriptions and providing a **rule-based relevance score** along with **feedback on missing skills**.
 
 ---
 
-## 🛠 Approach / Features
+## Approach
 
-1. **Resume Parsing:**  
-   - Extract text from PDF/DOCX resumes using `PyMuPDF` and `docx2txt`.  
+1. **PDF Parsing:**  
+   - Extract text from Job Descriptions and resumes using `PyMuPDF (fitz)`.  
 
-2. **Job Description Parsing:**  
-   - Extract required skills and qualifications from JD PDF.  
+2. **Relevance Scoring:**  
+   - Simple word overlap score between JD and resume.  
+   - Rule-based feedback to highlight missing skills.  
 
-3. **Scoring:**  
-   - **Hard Match:** Keyword matching via TF-IDF and cosine similarity.  
-   - **Semantic Match:** Embedding similarity using `sentence-transformers`.  
-   - **Weighted Final Score:** Hard match 40%, semantic match 60%.  
-   - **Verdict:** High / Medium / Low suitability.  
+3. **Batch Evaluation:**  
+   - Multiple JDs × Multiple resumes in one go.  
+   - Saves results to a SQLite database (`submissions.db`).  
 
-4. **Missing Skills Detection & Feedback:**  
-   - Identify skills present in JD but missing in resume.  
-   - Generate **personalized feedback** using `transformers` text-generation pipeline.  
-
-5. **Database Storage:**  
-   - Store results in **SQLite**.  
-   - Columns: Resume name, JD file, hard/semantic score, final score, verdict, missing skills, feedback.  
-
-6. **Dashboard (Streamlit):**  
-   - Select JD and process all resumes in `sample_data/resumes/`.  
-   - Display scores, verdicts, missing skills, feedback, and summary statistics.  
+4. **LLM Feedback (Optional):**  
+   - AI-based feedback can be added using small LLMs (like tiny-T5) if memory permits.  
+   - If unavailable, fallback to rule-based feedback.  
 
 ---
 
-## 💻 Installation
+## Installation
 
 1. Clone the repository:
-
-```bash
-git clone https://github.com/YOUR_USERNAME/Resume-Relevance-Check-System.git
-cd Resume-Relevance-Check-System
-````
+      ```bash
+      git clone https://github.com/yourusername/resume-relevance-checker.git
+      cd resume-relevance-checker
 
 2. (Optional) Create a virtual environment:
 
@@ -75,17 +50,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-> `requirements.txt` includes:
-> `streamlit`, `PyMuPDF`, `docx2txt`, `pandas`, `scikit-learn`, `sentence-transformers`, `transformers`, `torch`
-
----
-
 ## 🚀 Usage
 
 1. Run the Streamlit app:
 
 ```bash
-streamlit run hackathon_resume_checker_v5.py
+streamlit run hackathon_resume_checker_v7.py
 ```
 
 2. **Interface:**
@@ -94,8 +64,6 @@ streamlit run hackathon_resume_checker_v5.py
 * All resumes in `sample_data/resumes/` are processed automatically.
 * View for each resume:
 
-  * Hard Match (%)
-  * Semantic Match (%)
   * Final Score (%)
   * Verdict (High / Medium / Low)
   * Missing Skills
@@ -138,9 +106,8 @@ sample_data/
 
 ---
 
-© 2025 Hackathon Demo | Automated Resume Relevance Check System
+🌐 Live Demo
+Streamlit Cloud Link: 
 
-```
-
----
-
+- © 2025 Hackathon Demo | Automated Resume Relevance Check System
+- Built by Prajwal M and Shreeja Hebbar for Code4EdTech'25 💻
