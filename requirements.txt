@@ -1,0 +1,9 @@
+streamlit
+pdfplumber
+python-docx
+rapidfuzz
+pandas
+numpy
+openai
+langchain
+faiss-cpu
