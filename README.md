@@ -107,7 +107,7 @@ sample_data/
 ---
 
 🌐 Live Demo
-Streamlit Cloud Link: 
+Streamlit Cloud Link: https://resume-relevance-check-system-nxudheqnyhnkpmxnvsjpwk.streamlit.app
 
 - © 2025 Hackathon Demo | Automated Resume Relevance Check System
 - Built by Prajwal M and Shreeja Hebbar for Code4EdTech'25 💻
